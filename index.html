@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Isabel Benjumea · Python, IA y RAG</title>
+  <meta name="description" content="Portfolio de Isabel Benjumea Olmo: Física, Data Science e Inteligencia Artificial. Sistemas RAG, agentes con LLM y análisis de datos con Python y SQL.">
+  <meta property="og:title" content="Isabel Benjumea · Python, IA y RAG">
+  <meta property="og:description" content="Sistemas RAG, agentes con LLM y análisis de datos con Python y SQL.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/foto.png">
+  <meta name="theme-color" content="#FBF5EE">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23E9B9BC'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-size='30' font-weight='700' fill='%233B2A23'%3EIB%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Fraunces:opsz,wght,SOFT@9..144,500..700,100&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    // Aplica el tema guardado antes de pintar, para evitar parpadeos.
+    try { var t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Saltar al contenido</a>
+
+  <header class="nav" id="top">
+    <div class="nav__inner">
+      <a class="nav__brand" href="#top" aria-label="Inicio">
+        <span class="nav__mono">IB</span>
+        <span class="nav__name" data-site="shortName"></span>
+      </a>
+      <nav class="nav__links" aria-label="Secciones">
+        <a href="#about" data-i18n="nav.about"></a>
+        <a href="#projects" data-i18n="nav.projects"></a>
+        <a href="#experience" data-i18n="nav.experience"></a>
+        <a href="#education" data-i18n="nav.education"></a>
+        <a href="#skills" data-i18n="nav.skills"></a>
+        <a href="#contact" data-i18n="nav.contact"></a>
+      </nav>
+      <div class="nav__tools">
+        <button class="pill-btn" id="langBtn" type="button"></button>
+        <button class="icon-btn" id="themeBtn" type="button">
+          <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+          <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- INICIO -->
+    <section class="hero" id="home">
+      <canvas class="hero__net" id="net" aria-hidden="true"></canvas>
+      <div class="wrap hero__grid">
+        <div class="hero__text">
+          <p class="badge"><span class="badge__dot"></span><span data-i18n="available"></span></p>
+          <p class="hero__hello" data-i18n="greeting"></p>
+          <h1 class="hero__name" data-site="name"></h1>
+          <p class="hero__role mono" data-i18n="role"></p>
+          <p class="hero__tagline" data-i18n="tagline"></p>
+          <div class="hero__ctas">
+            <a class="btn btn--primary" href="#projects" data-i18n="ctaProjects"></a>
+            <a class="btn btn--ghost" id="cvBtn" download data-i18n="ctaCv"></a>
+            <a class="btn btn--ghost" href="#contact" data-i18n="ctaContact"></a>
+          </div>
+        </div>
+        <div class="hero__visual">
+          <div class="photo">
+            <span class="photo__blob photo__blob--a"></span>
+            <span class="photo__blob photo__blob--b"></span>
+            <img src="assets/foto.png" alt="Isabel Benjumea Olmo" width="300" height="300">
+          </div>
+          <div class="term" aria-hidden="true">
+            <div class="term__bar"><i></i><i></i><i></i><span>isabel.py</span></div>
+            <pre class="term__body" id="term"></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE MÍ -->
+    <section class="section" id="about">
+      <div class="wrap">
+        <p class="kicker mono" data-i18n="aboutKicker"></p>
+        <h2 class="h2" data-i18n="aboutTitle"></h2>
+        <p class="lead reveal" data-i18n="aboutText"></p>
+        <div class="pillars" id="pillars"></div>
+      </div>
+    </section>
+
+    <!-- PROYECTOS -->
+    <section class="section section--tint" id="projects">
+      <div class="wrap">
+        <p class="kicker mono" data-i18n="projectsKicker"></p>
+        <h2 class="h2" data-i18n="projectsTitle"></h2>
+        <p class="sub" data-i18n="projectsIntro"></p>
+        <div class="projects" id="projectList"></div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCIA -->
+    <section class="section" id="experience">
+      <div class="wrap">
+        <p class="kicker mono" data-i18n="experienceKicker"></p>
+        <h2 class="h2" data-i18n="experienceTitle"></h2>
+        <ol class="timeline" id="expList"></ol>
+      </div>
+    </section>
+
+    <!-- FORMACIÓN -->
+    <section class="section section--tint" id="education">
+      <div class="wrap">
+        <p class="kicker mono" data-i18n="educationKicker"></p>
+        <h2 class="h2" data-i18n="educationTitle"></h2>
+        <div class="edu" id="eduList"></div>
+      </div>
+    </section>
+
+    <!-- HABILIDADES -->
+    <section class="section" id="skills">
+      <div class="wrap">
+        <p class="kicker mono" data-i18n="skillsKicker"></p>
+        <h2 class="h2" data-i18n="skillsTitle"></h2>
+        <div class="skills" id="skillList"></div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="section" id="contact">
+      <div class="wrap">
+        <div class="contact reveal">
+          <p class="kicker mono" data-i18n="contactKicker"></p>
+          <h2 class="h2" data-i18n="contactTitle"></h2>
+          <p class="contact__text" data-i18n="contactText"></p>
+          <div class="contact__links" id="contactLinks"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <span>© <span id="year"></span> <span data-site="name"></span></span>
+      <span class="mono" data-i18n="footer"></span>
+    </div>
+  </footer>
+
+  <script src="content.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
