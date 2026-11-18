@@ -152,8 +152,8 @@
   });
 
   /* ---------- Tema claro/oscuro ---------- */
-  const mqDark = window.matchMedia("(prefers-color-scheme: dark)");
-  const currentTheme = () => document.documentElement.dataset.theme || (mqDark.matches ? "dark" : "light");
+  // Por defecto, tema claro. El oscuro solo se aplica si se elige con el botón.
+  const currentTheme = () => document.documentElement.dataset.theme || "light";
   function applyThemeColor() {
     const meta = $('meta[name="theme-color"]');
     if (meta) meta.content = currentTheme() === "dark" ? "#1E1714" : "#FBF5EE";
@@ -165,7 +165,6 @@
     store.set("theme", next);
     applyThemeColor();
   });
-  mqDark.addEventListener && mqDark.addEventListener("change", applyThemeColor);
 
   /* ---------- Navegación ---------- */
   const nav = $(".nav");
